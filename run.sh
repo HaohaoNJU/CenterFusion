@@ -1,0 +1,11 @@
+./build/centerfusion \
+--detectionOnnxPath=models/cf_img.onnx \
+--fusionOnnxPath=models/cf_fus.onnx \
+--detectionEnginePath=models/cf_img16.engine \
+--fusionEnginePath=models/cf_fus16.engine \
+--savePath=results \
+--filePath=data/cf_predata \
+--fp16 \
+--scoreThre=0.2 \
+--nmsThre=0.05 \
+--loadEngine
