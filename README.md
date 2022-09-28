@@ -2,6 +2,7 @@
 
 <img src='doc/centerfusion_baseline.png' style=' width:800px;height:380 px'/>
 ![demo](centerfusion_baseline_mini.mp4)
+
 ## Todo List
 - DCNv2 source code & Trt plugin support 
 - rviz visualization
