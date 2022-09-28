@@ -1,8 +1,7 @@
 # 视觉毫米波雷达融合
 
-<img src='doc/centerfusion_baseline.png' style=' width:800px;height:380 px'/>
 
-![demo](centerfusion_baseline_mini.mp4)
+[![watch this video](doc/centerfusion_baseline.png)](doc/centerfusion_baseline_mini.mp4)
 
 ## Todo List
 - DCNv2 source code & Trt plugin support 
