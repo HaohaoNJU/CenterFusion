@@ -328,7 +328,7 @@ bool CenterFusion::infer()
         // if (idx<30) continue;
 
         int32_t img_size, pc_dep_size;
-        std::string tmp_pc_num_path = "/mnt/Desktop/projects/CP_TRT/CenterFusion/data/pc_num.bin";
+        std::string tmp_pc_num_path = "data/pc_num.bin";
         if (!processInput(inputImgBuf, m_params_.filePaths[idx + fileSize], img_size) 
             || !readPC(inputPcBuf, m_params_.filePaths[idx + fileSize * 2], img_size )
             || !readPcNum( inputPcNumBuf, tmp_pc_num_path)

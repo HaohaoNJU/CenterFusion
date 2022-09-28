@@ -1,12 +1,17 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.14.1) #2.8.3)
 project(centerfusion)
 
 
 set(SAMPLES_COMMON_SOURCES
 ${PROJECT_SOURCE_DIR}/include/common/logger.cpp
 )
-set(TRT_LIB_PATH /mnt/Desktop/projects/TensorRT/lib) #/mnt/Desktop/pkgs/TensorRT-8.0.1.6/lib)
+set(TRT_LIB_PATH "/home/wanghao/Desktop/projects/TensorRT/lib") #/mnt/Desktop/pkgs/TensorRT-8.0.1.6/lib)
 
+set(CMAKE_INSTALL_RPATH "/home/wanghao/Desktop/projects/TensorRT/lib") # make sure target linking to the right so files from our specified dirs .  
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH True)
+set(CMAKE_BUILD_RPATH "/home/wanghao/Desktop/projects/TensorRT/lib") # make sure target linking to the right so files from our specified dirs .  
+ set(CMAKE_INSTALL_REMOVE_ENVIRONMENT_RPATH TRUE)
+ 
 find_package(PkgConfig QUIET)
 pkg_check_modules(
     CF_DEPEND
@@ -45,10 +50,7 @@ find_library(NVINFER NAMES nvinfer HINTS ${TRT_LIB_PATH} REQUIRED )
 find_library(NVPARSERS NAMES nvparsers HINTS ${TRT_LIB_PATH} REQUIRED )
 find_library(NVONNXPARSERS NAMES nvonnxparser HINTS ${TRT_LIB_PATH} REQUIRED )
 
-message("TRT LIB :   ${TRT_LIB_PATH}")
-message("NVINFER: ${NVINFER}")
-message("NVPARSERS: ${NVPARSERS}")
-message("NVONNXPARSERS: ${NVONNXPARSERS}")
+
 
 
 # set flags for CUDNN availability
@@ -68,7 +70,16 @@ set(CUDNN_AVAIL ON)
 
 file(GLOB PostFusionLibs ${PROJECT_SOURCE_DIR}/src/*cpp)
 add_library(postfusions SHARED ${PostFusionLibs})
-target_link_libraries(postfusions nvonnxparser)
+target_link_libraries(postfusions 
+                  ${NVONNXPARSERS}
+                  ${NVPARSERS}
+                  ${NVINFER}
+                  )
+
+message("TRT LIB :   ${TRT_LIB_PATH}")
+message("NVINFER: ${NVINFER}")
+message("NVPARSERS: ${NVPARSERS}")
+message("NVONNXPARSERS: ${NVONNXPARSERS}")
 
 file(GLOB PointPillarCU ${PROJECT_SOURCE_DIR}/src/*cu)
 cuda_add_library(postfusionsCU SHARED ${PointPillarCU})
