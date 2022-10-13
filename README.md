@@ -1,8 +1,6 @@
 # 视觉毫米波雷达融合
 
-
-[![watch this video](doc/centerfusion_baseline.png)](doc/watchme.mp4)
-
+https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-afb2-7393345831ee.mp4
 
 
 
