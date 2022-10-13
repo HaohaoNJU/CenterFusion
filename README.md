@@ -1,7 +1,7 @@
 # 视觉毫米波雷达融合
 
 
-[![watch this video](doc/centerfusion_baseline.png)](doc/centerfusion_baseline_mini.mp4)
+[![watch this video](doc/centerfusion_baseline.png)](doc/watchme.mp4)
 
 
 
