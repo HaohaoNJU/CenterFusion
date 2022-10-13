@@ -3,6 +3,12 @@
 
 [![watch this video](doc/centerfusion_baseline.png)](doc/centerfusion_baseline_mini.mp4)
 
+
+
+https://user-images.githubusercontent.com/25930661/195578685-d9b49bf3-2ee9-4e66-b21b-03c54f08884c.mp4
+
+
+
 ## Todo List
 - DCNv2 source code & Trt plugin support 
 - rviz visualization
