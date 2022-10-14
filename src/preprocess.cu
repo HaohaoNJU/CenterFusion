@@ -174,7 +174,6 @@ void _raw_pc_encode(const float* pc_3d, const float* pc_vx, const float* pc_vz,
         if (box_height>0 && box_width>0 && pc_3d[i * 3 + 2] >0)
             pixel_assign_kernel<<<box_height, box_width>>>(pc_3d[i * 3 + 2], pc_vx[i], pc_vz[i], corner2d[i * 4 + 0], corner2d[i * 4 + 1], pc_dep);
     }
-    
     cudaFree(dev_pc_3d);
     cudaFree(tlbr);
 
@@ -263,6 +262,7 @@ __global__ void frustum_association_kernel2(const float* pc_dep,
         output[2] = pc_dep[cur_pixel_idx + 2 * OUTPUT_W * OUTPUT_H];
     }
 }
+
 
 void _raw_generate_pc_hm(const float* pc_dep, float* pc_hm, 
                         const float* reg, const float* wh, const float* score, 

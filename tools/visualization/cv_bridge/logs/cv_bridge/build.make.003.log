@@ -1,0 +1,35 @@
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_cpp
+[35m[1mConsolidate compiler generated dependencies of target cv_bridge[0m
+[ 33%] [32mBuilding CXX object src/CMakeFiles/cv_bridge.dir/cv_bridge.cpp.o[0m
+[ 33%] [32mBuilding CXX object src/CMakeFiles/cv_bridge.dir/rgb_colors.cpp.o[0m
+[ 50%] [32m[1mLinking CXX shared library /home/wanghao/Desktop/projects/cv_bridge/devel/.private/cv_bridge/lib/libcv_bridge.so[0m
+[ 50%] Built target cv_bridge
+[35m[1mConsolidate compiler generated dependencies of target cv_bridge_boost[0m
+[ 66%] [32mBuilding CXX object src/CMakeFiles/cv_bridge_boost.dir/module.cpp.o[0m
+[ 83%] [32mBuilding CXX object src/CMakeFiles/cv_bridge_boost.dir/module_opencv3.cpp.o[0m
+In file included from [01m[K/home/wanghao/Desktop/projects/cv_bridge/src/vision_opencv/cv_bridge/src/module_opencv3.cpp:3:0[m[K:
+[01m[K/home/wanghao/Desktop/projects/cv_bridge/src/vision_opencv/cv_bridge/src/module.hpp:[m[K In function ‘[01m[Kint do_numpy_import()[m[K’:
+[01m[K/home/wanghao/Desktop/projects/cv_bridge/src/vision_opencv/cv_bridge/src/module.hpp:39:5:[m[K [01;35m[Kwarning: [m[Kconverting to non-pointer type ‘[01m[Kint[m[K’ from NULL [[01;35m[K-Wconversion-null[m[K]
+     [01;35m[Kimport_array[m[K( );
+     [01;35m[K^~~~~~~~~~~~[m[K
+In file included from [01m[K/home/wanghao/Desktop/projects/cv_bridge/src/vision_opencv/cv_bridge/src/module.cpp:35:0[m[K:
+[01m[K/home/wanghao/Desktop/projects/cv_bridge/src/vision_opencv/cv_bridge/src/module.hpp:[m[K In function ‘[01m[Kint do_numpy_import()[m[K’:
+[01m[K/home/wanghao/Desktop/projects/cv_bridge/src/vision_opencv/cv_bridge/src/module.hpp:39:5:[m[K [01;35m[Kwarning: [m[Kconverting to non-pointer type ‘[01m[Kint[m[K’ from NULL [[01;35m[K-Wconversion-null[m[K]
+     [01;35m[Kimport_array[m[K( );
+     [01;35m[K^~~~~~~~~~~~[m[K
+[100%] [32m[1mLinking CXX shared library /home/wanghao/Desktop/projects/cv_bridge/devel/.private/cv_bridge/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so[0m
+[100%] Built target cv_bridge_boost

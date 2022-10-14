@@ -301,12 +301,16 @@ bool CenterFusion::infer()
 
     // create event  object , which are used time computing
     cudaEvent_t start, stop;
+    float preprocess_time = 0;
     float detection_time = 0;
+    float frustum_association_time = 0 ;
     float merge_time = 0;
     float fusion_time  = 0;
     float post_time = 0;
     
+    float totalPrepDur = 0;
     float totalDetectionDur = 0;
+    float totalAssocDur = 0;
     float totalMergeDur = 0;
     float totalFusionDur =0 ;
     float totalPostDur = 0;
@@ -370,12 +374,20 @@ bool CenterFusion::infer()
 
         preprocess(pc_raw_trans, pc_vx, pc_vz, pc_dep_size, dev_pc_dep_, dev_feat_calib_, dev_feat_invcalib_);
         
+        cudaEventRecord(stop);
+        cudaEventSynchronize(stop);
+        cudaEventElapsedTime(&preprocess_time, start, stop);        
+
         std::vector<Box> predResult;
         predResult.clear();
 
 
         // Doing inference 
+        cudaEventRecord(start);
         bool status = context_detection->executeV2(buffers_detection.getDeviceBindings().data());
+        cudaEventRecord(stop);
+        cudaEventSynchronize(stop);
+        cudaEventElapsedTime(&detection_time, start, stop); 
         if (!status)
         {
             sample::gLogError<< "Error with fusion contex execution ! " << std::endl;
@@ -384,10 +396,14 @@ bool CenterFusion::infer()
 
 
         // now generate pc_hm, make frustum association 
+        cudaEventRecord(start);
         generate_pc_hm( buffers_detection,
                     dev_pc_dep_, dev_pc_hm_,
                     dev_score_idx_, dev_feat_calib_, dev_feat_invcalib_);
-        
+
+        cudaEventRecord(stop);
+        cudaEventSynchronize(stop);
+        cudaEventElapsedTime(&frustum_association_time, start, stop); 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // void* inputPcDepBuf = nullptr;
         // std::cout <<  m_params_.filePaths[idx + fileSize * 3] << std::endl;
@@ -403,9 +419,7 @@ bool CenterFusion::infer()
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         //  cast value type on the GPU device 
-        cudaEventRecord(stop);
-        cudaEventSynchronize(stop);
-        cudaEventElapsedTime(&detection_time, start, stop);
+
 
         cudaEventRecord(start);
         dev_featmap_ = static_cast<float*>(buffers_detection.getDeviceBuffer("feat"));
@@ -461,7 +475,9 @@ bool CenterFusion::infer()
         cudaEventSynchronize(stop);
         cudaEventElapsedTime(&post_time, start, stop);
 
+        totalPrepDur += preprocess_time ;
         totalDetectionDur += detection_time ;
+        totalAssocDur += frustum_association_time;
         totalMergeDur += merge_time ;
         totalFusionDur += fusion_time ;
         totalPostDur += post_time ;
@@ -474,10 +490,10 @@ bool CenterFusion::infer()
         free(pc_raw);
         free(pc_num);
 
-
-
     }
+    sample::gLogInfo << "Average PreProcess Time: " << totalPrepDur /fileSize << " ms"<< std::endl;
     sample::gLogInfo << "Average DetectionInfer Time: " << totalDetectionDur /fileSize << " ms"<< std::endl;
+    sample::gLogInfo << "Average FrustumAssoc Time: " << totalAssocDur /fileSize << " ms"<< std::endl;
     sample::gLogInfo << "Average merge Time: " << totalMergeDur /fileSize << " ms"<< std::endl;
     sample::gLogInfo << "Average FusInfer  Time: " << totalFusionDur /fileSize << " ms"<< std::endl;
     sample::gLogInfo << "Average PostProcess Time: " << totalPostDur /  fileSize<< " ms"<< std::endl;

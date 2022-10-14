@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: cv_bridge
+Version: 1.13.0
+Summary: This contains CvBridge, which converts between ROS
+    Image messages and OpenCV images.
+Home-page: http://www.ros.org/wiki/cv_bridge
+Author: Vincent Rabaud
+Author-email: vincent.rabaud@gmail.com
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN

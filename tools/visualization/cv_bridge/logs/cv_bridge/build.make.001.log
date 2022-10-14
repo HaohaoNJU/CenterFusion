@@ -1,0 +1,17 @@
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_py
+[ 50%] Built target cv_bridge
+[100%] Built target cv_bridge_boost
