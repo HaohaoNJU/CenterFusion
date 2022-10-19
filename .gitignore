@@ -4,6 +4,7 @@ tools/tmp_models
 tools/.ipynb_checkpoints
 tools/catkin_ws/src/waymo_track/src/.ipynb_checkpoints
 tools/catkin_ws/build
+tools/CenterFusion/models/*
 news
 olds
 results/*

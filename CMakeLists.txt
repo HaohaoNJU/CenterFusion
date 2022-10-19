@@ -5,13 +5,8 @@ project(centerfusion)
 set(SAMPLES_COMMON_SOURCES
 ${PROJECT_SOURCE_DIR}/include/common/logger.cpp
 )
-set(TRT_LIB_PATH "/home/wanghao/Desktop/projects/TensorRT/lib") #/mnt/Desktop/pkgs/TensorRT-8.0.1.6/lib)
 
-set(CMAKE_INSTALL_RPATH "/home/wanghao/Desktop/projects/TensorRT/lib") # make sure target linking to the right so files from our specified dirs .  
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH True)
-set(CMAKE_BUILD_RPATH "/home/wanghao/Desktop/projects/TensorRT/lib") # make sure target linking to the right so files from our specified dirs .  
- set(CMAKE_INSTALL_REMOVE_ENVIRONMENT_RPATH TRUE)
- 
+
 find_package(PkgConfig QUIET)
 pkg_check_modules(
     CF_DEPEND

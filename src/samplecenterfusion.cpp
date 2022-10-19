@@ -109,6 +109,7 @@ int main(int argc, char** argv)
     params.score_thre = args.scoreThre;
 
     params.fp16 = args.runInFp16;
+    std::cout << "fp 16 " << params.fp16 << std::endl; 
     params.load_engine = args.loadEngine;
 
     // Input Output Names, according to TASK_NUM
