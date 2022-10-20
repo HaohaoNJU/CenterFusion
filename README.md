@@ -49,7 +49,7 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
   Then you'll see two onnx files in `tools/CenterFusion/models`.
 
 ## Input data
-  The TRT engines are feed into three 
+  Todo
 
 
 ## Computation speed
