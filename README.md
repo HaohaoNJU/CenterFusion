@@ -1,4 +1,4 @@
-# 视觉毫米波雷达融合
+# Camera & Radar feature-level sensor fusion for object detection 
 
 https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-afb2-7393345831ee.mp4
 
@@ -44,12 +44,16 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
   sh experiments/create_data.sh
   ```
   Then you should have the generated datas in `data/predata` :
+
     - images, contains 1000 frame input images for trt engines, each has its shape (3, 448, 800)
     - calibs, contains 1000 frame camera intrinsics, each has its shape (3,4)
     - pc_3ds, contains 1000 frame radar points, each has its shape  (5,1000), each row stands for [loc_x, loc_y, loc_z, velo_x, velo_y]
     - data_num.bin, wich shape (1000,), records valid point nums for each radar frame 
-  
+  These datas wille be used to feed the trt engines. 
 ## Installation
+
+  For regular python package installation, type in `pip install -r requirements.txt`
+
   
   It is not possible for CenterFusion to run without the support of DCNv2 plugin(A Deformable convolutional network algorighm), you should install it with `python` and compile it as TensorRT plugin. 
 
@@ -128,4 +132,14 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
 |engine_fp16|0.09|7.44|7.64|0.05|1.00|0.62|
 |engine_fp32|0.16|12.03|8.81|0.04|3.05|0.75|
 
+## Frustum association
+TODO 
+
+## Acknowledgements
+This project refers to some codes from 
+[CenterFusion](https://github.com/mrnabati/CenterFusion)
+but some codes have been slightly modified.
+
+## Contact
+Haohao by christian.wong423@gmail.com
 
