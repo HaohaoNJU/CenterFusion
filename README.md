@@ -7,7 +7,7 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
 
 
 ## Generating samples
-  Please download and preprocess nuscenes dataset according to https://github.com/mrnabati/CenterFusion#dataset-preparation
+  Please download and preprocess nuscenes dataset according to [this](https://github.com/mrnabati/CenterFusion#dataset-preparation)
   assuming your directory structure is like this :
   
   ```
