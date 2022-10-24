@@ -28,7 +28,6 @@
 #include <string>
 #include <sys/time.h>
 #include <chrono>
-#include "utils.h"
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 #include "centerfusion.h"
@@ -103,13 +102,13 @@ int main(int argc, char** argv)
     params.detectionSerializedEnginePath = args.detectionEnginePath;
     params.fusionSerializedEnginePath = args.fusionEnginePath;
     params.savePath = args.savePath;
-    params.filePaths=glob(args.filePath + "/*.bin");
+    // params.filePaths=glob(args.filePath + "/*.bin");
+    params.filePaths = {args.filePath};
 
     params.nms_thre = args.nmsThre;
     params.score_thre = args.scoreThre;
 
     params.fp16 = args.runInFp16;
-    std::cout << "fp 16 " << params.fp16 << std::endl; 
     params.load_engine = args.loadEngine;
 
     // Input Output Names, according to TASK_NUM

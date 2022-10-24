@@ -1,8 +1,0 @@
-Symlinking /home/wanghao/Desktop/projects/cv_bridge/devel/share/cv_bridge/cmake/cv_bridgeConfig-version.cmake
-Symlinking /home/wanghao/Desktop/projects/cv_bridge/devel/share/cv_bridge/cmake/cv_bridge-extras.cmake
-Symlinking /home/wanghao/Desktop/projects/cv_bridge/devel/share/cv_bridge/cmake/cv_bridgeConfig.cmake
-Symlinking /home/wanghao/Desktop/projects/cv_bridge/devel/lib/libcv_bridge.so
-Symlinking /home/wanghao/Desktop/projects/cv_bridge/devel/lib/pkgconfig/cv_bridge.pc
-Symlinking /home/wanghao/Desktop/projects/cv_bridge/devel/lib/python3/dist-packages/cv_bridge/__init__.py
-Symlinking /home/wanghao/Desktop/projects/cv_bridge/devel/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so
-Symlinking /home/wanghao/Desktop/projects/cv_bridge/devel/lib/python3/dist-packages/cv_bridge/boost/__init__.py

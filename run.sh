@@ -4,7 +4,7 @@
 --detectionEnginePath=models/cf_img16.engine \
 --fusionEnginePath=models/cf_fus16.engine \
 --savePath=results \
---filePath=data/cf_predata \
+--filePath=data/predata \
 --fp16 \
 --scoreThre=0.2 \
 --nmsThre=0.05 \

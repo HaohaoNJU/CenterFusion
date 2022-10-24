@@ -22,10 +22,10 @@ ROS_RATE = 6
 SCORE_THRESH = 0.2
 
 
-rp_anos = "/home/wanghao/Desktop/projects/CP_TRT/CenterFusion/data/torch_results/save_annos_nuscenes.json"
-result_root_pattern = "/home/wanghao/Desktop/projects/CP_TRT/CenterFusion/results/calib{}.bin.txt"
-img_root_pattern = "/home/wanghao/Desktop/projects/CP_TRT/CenterFusion/data/cf_predata/img{}.bin"
-
+# rp_anos = "/home/wanghao/Desktop/projects/CP_TRT/CenterFusion/data/torch_results/save_annos_nuscenes.json"
+result_root_pattern = "../../results/data{}.bin.txt"
+img_root_pattern = "../../data/predata/images/data{}.bin"
+calib_root_pattern = "../../data/predata/calibs/data{}.bin"
 
 def draw_box_3d(image, corners, c=(255, 0, 255), same_color=False, text = None):
   face_idx = [[0,1,5,4],
@@ -173,7 +173,7 @@ if  __name__ == "__main__":
     box3d_pub = rospy.Publisher('nusc_3dbox',MarkerArray, queue_size=10)
     image_pub =rospy.Publisher("nusc_image", Image, queue_size = 10) 
 
-    annos=pkl.load(open(rp_anos,'rb'))
+    # annos=pkl.load(open(rp_anos,'rb'))
     frame_nums = 1000
 
     calib =  LidarCameraSync(np.zeros(16), np.zeros(9))
@@ -190,8 +190,8 @@ if  __name__ == "__main__":
     ################################################################################
     while not rospy.is_shutdown():
         k = frame * 6 + 1
-        anno = annos[ k]
-
+        # anno = annos[ k]
+        intrinsics = np.fromfile(calib_root_pattern.format(frame),dtype=np.float32).reshape(3,4)[:3,:3]
         img = np.fromfile(img_root_pattern.format(frame), dtype=np.float32).reshape(3,448,800).transpose(1,2,0)
         img = (img-img.min())/(img.max() - img.min()) * 255
         img = cv2.resize(img.astype(np.uint8),(1600,900))
@@ -201,7 +201,7 @@ if  __name__ == "__main__":
         #x, y, z, dx, dy, dz, v1, v2, rot, score, cls
 
         dis_keep_mask = np.logical_and(np.logical_and(preds[:,0]< 150, preds[:,0]> -150), np.logical_and(preds[:,2]< 150, preds[:,2]> -150))
-        calib.set_proj_param(extrinsic=nusc2waymo_trans.T, intrinsic= anno['meta'][1.0]['calib'].squeeze().numpy()[:3,:3])
+        calib.set_proj_param(extrinsic=nusc2waymo_trans.T, intrinsic= intrinsics) #anno['meta'][1.0]['calib'].squeeze().numpy()[:3,:3])
 
         score_keep_mask = preds[:,9] > SCORE_THRESH
         box_idxs = np.where(np.logical_and(dis_keep_mask, score_keep_mask))[0]

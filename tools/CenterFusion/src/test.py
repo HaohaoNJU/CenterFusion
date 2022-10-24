@@ -191,29 +191,6 @@ def prefetch_test(opt):
                         pre_anno[k] = v
                 
         ret = detector.run(pre_processed_images)
-        
-# ####################################################################################################
-        # img,pc_dep, calib = detector.get_data(pre_processed_images)
-        # presults = detector.get_data(pre_processed_images)
-
-        # p = "/mnt/perception/nuscenes/nuScenes/mmdetection3D/cf_predata/"
-
-        # pc_3d = pre_processed_images['pc_3d']
-        # pc_vx = pc_3d[0,8:9]
-        # pc_vz = pc_3d[0,9:10]
-        # pc_3d = torch.cat([pc_3d[0,:3], pc_vx, pc_vz],dim=0)
-        # pc_3d.cpu().numpy().astype(np.float32).tofile(p+"data{}.bin".format(ind))
-        
-        # data_nums.append(pre_processed_images['pc_N'][0].item())
-        # if ind == len(data_loader)-1:
-        #     data_nums = np.array(data_nums)
-        #     data_nums.astype(np.float32).tofile(p+"data_num.bin".format(ind))
-            
-        # img.cpu().numpy().astype(np.float32).tofile(p+"images/"+"data{}.bin".format(ind))
-        # pc_dep.cpu().numpy().astype(np.float32).tofile(p+"pc_deps/"+"data{}.bin".format(ind))
-        # calib.cpu().numpy().astype(np.float32).tofile(p+"calibs/"+"data{}.bin".format(ind))
-        continue
-# ####################################################################################################
 
         results[int(img_id.numpy().astype(np.int32)[0])] = ret['results']
         pre_annos[int(img_id.numpy().astype(np.int32)[0])] = pre_anno

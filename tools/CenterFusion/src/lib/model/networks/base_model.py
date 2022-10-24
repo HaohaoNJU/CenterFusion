@@ -144,12 +144,12 @@ class BaseModel(nn.Module):
             else:
               pc_hm = generate_pc_hm(z, pc_dep, calib, self.opt)
               #############################################
-              import time
-              import numpy as np
-              p = "".join(str(time.time()).split("."))[:15]
-              pc_hm[0].cpu().numpy().astype(np.float32).tofile("hm_data/"+ "hm_"+p+".bin")
-              x[0].cpu().numpy().astype(np.float32).tofile("hm_data/" + "img_"+p+".bin")
-              print("saved " , p)
+              # import time
+              # import numpy as np
+              # p = "".join(str(time.time()).split("."))[:15]
+              # pc_hm[0].cpu().numpy().astype(np.float32).tofile("hm_data/"+ "hm_"+p+".bin")
+              # x[0].cpu().numpy().astype(np.float32).tofile("hm_data/" + "img_"+p+".bin")
+              # print("saved " , p)
               ###############################################
           ind = self.opt.pc_feat_channels['pc_dep']
           z['pc_hm'] = pc_hm[:,ind,:,:].unsqueeze(1)

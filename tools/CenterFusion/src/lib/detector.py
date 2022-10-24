@@ -586,7 +586,7 @@ class Detector(object):
             
             # Important step !     only images, pc_dep, meta is not None 
             #     feed in image and output raw outputs. then decode bboxs, filter out topK attributes based on score.
-            self._get_data(
+            return self._get_data(
                 images, self.pre_images, pre_hms, pre_inds, return_time=True, pc_dep=pc_dep, meta=meta)
 
 

@@ -11,5 +11,14 @@ results/*
 run0.sh
 src/orgs
 models/*engine
-data
+data/nuscenes  
+data/predata 
+data/predatadata_num.bin
+data_org
+results_org
 make.sh
+tools/visualization/catkin_worlspace/build  
+tools/visualization/catkin_workspace/devel  
+tools/visualization/catkin_workspace/install  
+tools/visualization/catkin_workspace/logs
+

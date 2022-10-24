@@ -64,8 +64,8 @@ class nuScenes(GenericDataset):
         split_name = split_names[split]
     except :
         raise ValueError("split not given correctly , provide one of the follow value \n", split_names)
-    # data_dir = os.path.join(opt.data_dir, 'nuscenes') 
-    data_dir = os.path.join(opt.data_dir, 'nuScenes') # TODO : change for mnt dir 
+    data_dir = os.path.join(opt.data_dir, 'nuscenes') 
+    # data_dir = os.path.join(opt.data_dir, 'nuScenes') # TODO : change for mnt dir 
 
     print('Dataset version', opt.dataset_version)
     
@@ -286,8 +286,8 @@ class nuScenes(GenericDataset):
         '{}/results_nuscenes_{}_{}.json '.format(save_dir, task, split) + \
         '--output_dir {} '.format(output_dir) + \
         '--eval_set {} '.format(split) + \
-        # '--dataroot ../data/nuscenes/ ' + \
-        '--dataroot /mnt/perception/nuscenes/nuScenes/ ' + \
+        '--dataroot ../data/nuscenes/ ' + \
+        # '--dataroot /mnt/perception/nuscenes/nuScenes/ ' + \
         '--version {} '.format(version) + \
         '--plot_examples {} '.format(n_plots) + \
         '--render_curves {} '.format(render_curves))
@@ -297,13 +297,13 @@ class nuScenes(GenericDataset):
         'tools/nuscenes-devkit/python-sdk/nuscenes/eval/tracking/evaluate.py ' + \
         '{}/results_nuscenes_{}_{}.json '.format(save_dir, task, split) + \
         '--output_dir {} '.format(output_dir) + \
-        '--dataroot /mnt/perception/nuscenes/nuScenes/ ')
-        # '--dataroot ../data/nuscenes/')
+        # '--dataroot /mnt/perception/nuscenes/nuScenes/ ')
+        '--dataroot ../data/nuscenes/')
       os.system('python ' + \
         'tools/nuscenes-devkit/python-sdk-alpha02/nuscenes/eval/tracking/evaluate.py ' + \
         '{}/results_nuscenes_{}_{}.json '.format(save_dir, task, split) + \
         '--output_dir {} '.format(output_dir) + \
-        # '--dataroot ../data/nuscenes/')
-        '--dataroot /mnt/perception/nuscenes/nuScenes/ ')
+        '--dataroot ../data/nuscenes/')
+        # '--dataroot /mnt/perception/nuscenes/nuScenes/ ')
     
     return output_dir

@@ -1,5 +1,5 @@
 #include "centerfusion.h"
-
+#include "utils.h"
 
  void tmpSave(float* results , std::string outputFilePath, size_t size, size_t line_num ) 
  {
@@ -315,7 +315,10 @@ bool CenterFusion::infer()
     float totalFusionDur =0 ;
     float totalPostDur = 0;
 
-    int fileSize = m_params_.filePaths.size() / 4;
+    std::vector<std::string> imgPaths = glob(m_params_.filePaths[0]+"/images/*bin");
+    std::vector<std::string> calibPaths = glob(m_params_.filePaths[0]+"/calibs/*bin");
+    std::vector<std::string> pc3dPaths = glob(m_params_.filePaths[0]+"/pc_3ds/*bin");
+    int fileSize = imgPaths.size();
 
     if (!fileSize) {
         sample::gLogError<< "No Bin File Was Found ! " << std::endl;
@@ -326,18 +329,22 @@ bool CenterFusion::infer()
 
     // For Loop Every Pcl Bin 
      for(auto idx = 0; idx < fileSize; idx++){
-        std::cout << "===========FilePath[" << idx <<"/"<<fileSize<<"]:" << m_params_.filePaths[idx] <<"=============="<< std::endl;
+        sample::gLogInfo << "===========FilePath[" << idx <<"/"<<fileSize<<"]:" << imgPaths[idx] <<"=============="<< std::endl;
         // if (idx<164) continue;
         // 0 :calib, 1: img, 2: pc_3d, 3: pc_dep
         // if (idx<30) continue;
 
         int32_t img_size, pc_dep_size;
-        std::string tmp_pc_num_path = "data/pc_num.bin";
-        if (!processInput(inputImgBuf, m_params_.filePaths[idx + fileSize], img_size) 
-            || !readPC(inputPcBuf, m_params_.filePaths[idx + fileSize * 2], img_size )
+        std::string tmp_pc_num_path = m_params_.filePaths[0]+"/data_num.bin";
+        // if (!processInput(inputImgBuf, m_params_.filePaths[idx + fileSize], img_size) 
+        //     || !readPC(inputPcBuf, m_params_.filePaths[idx + fileSize * 2], img_size )
+        //     || !readPcNum( inputPcNumBuf, tmp_pc_num_path)
+        //     || !readPcNum( inputCalibBuf,  m_params_.filePaths[idx]))
+        if (!processInput(inputImgBuf, imgPaths[idx], img_size) 
+            || !readPC(inputPcBuf, pc3dPaths[idx], img_size )
             || !readPcNum( inputPcNumBuf, tmp_pc_num_path)
-            || !readPcNum( inputCalibBuf,  m_params_.filePaths[idx]))
-    
+            || !readPcNum( inputCalibBuf,  calibPaths[idx]))
+
             // ||!processInput(inputPcBuf, m_params_.filePaths[idx + fileSize * 2], pc_dep_size))
             {sample::gLogError << "Read File Error! " << std::endl;
                 return false;}
@@ -482,7 +489,7 @@ bool CenterFusion::infer()
         totalFusionDur += fusion_time ;
         totalPostDur += post_time ;
 
-        saveOutput(predResult, m_params_.filePaths[idx], m_params_.savePath);
+        saveOutput(predResult, imgPaths[idx], m_params_.savePath);
         
 
         free(img);
