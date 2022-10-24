@@ -133,7 +133,20 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
 |engine_fp32|0.16|12.03|8.81|0.04|3.05|0.75|
 
 ## Frustum association
-TODO 
+ The main modules of procession can be seen here 
+ <img width="1201" alt="截屏2022-10-24 下午9 01 59" src="https://user-images.githubusercontent.com/25930661/197531762-00412a13-e30a-41bb-82cc-e11f532b59d8.png">
+
+The most innovative parts are pc_dep generation and frustum association, we'll illustrate the main ideas.
+
+#### PC_DEP Generation
+This is a step where we encode the raw radar points as a structured pseudo-image data format . 
+
+Given each radar points, we firstly generate its coordinated pillar(with size 0.2, 0.2, 1.5 for length,width,height) in camera-viewed 3d space, we then project its 8 corners to image pixel coordinates,  calculating its 2d top-left & bottom-right corners, which defines a 2d box, we insert (loc_z, velo_x,velo_z) of this radar point to each pixel inside this 2d box , when two boxs are intersected, we insert the nearer point feature to the intersected area. The 3d pillars and generated pc_dep can be seen here :
+
+<img width="996" alt="截屏2022-10-24 下午9 12 07" src="https://user-images.githubusercontent.com/25930661/197533715-e46e3b83-7791-4e1f-b058-50df04c5718e.png">
+
+#### Frustum Association
+TODO
 
 ## Acknowledgements
 This project refers to some codes from 
