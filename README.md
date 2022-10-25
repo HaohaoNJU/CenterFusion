@@ -132,7 +132,7 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
 |engine_fp16|0.09|7.44|7.64|0.05|1.00|0.62|
 |engine_fp32|0.16|12.03|8.81|0.04|3.05|0.75|
 
-## Frustum association
+## Computation Graph
  The main modules of procession can be seen here 
 
 <img width="1340" alt="截屏2022-10-25 上午10 25 33" src="https://user-images.githubusercontent.com/25930661/197667512-b3183a3b-0afa-4bd5-b2f8-f28ce2687aa9.png">
@@ -147,7 +147,11 @@ Given each radar points, we firstly generate its coordinated pillar(with size 0.
 <img width="996" alt="截屏2022-10-24 下午9 12 07" src="https://user-images.githubusercontent.com/25930661/197533715-e46e3b83-7791-4e1f-b058-50df04c5718e.png">
 
 #### Frustum Association
-TODO
+<img width="1021" alt="截屏2022-10-24 下午9 21 34" src="https://user-images.githubusercontent.com/25930661/197694179-711968ec-16ba-423b-b107-4c1f48656098.png">
+
+An object detected using the image features (left), generating the ROI frustum based on object’s 3D
+bounding box (middle), and the BEV of the ROI frustum showing radar detections inside the frustum (right). δ is used to increase the
+frustum size in the testing phase. d is the ground truth depth in the training phase and the estimated object depth in the testing phase.
 
 ## Acknowledgements
 This project refers to some codes from 
