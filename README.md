@@ -134,7 +134,8 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
 
 ## Frustum association
  The main modules of procession can be seen here 
- <img width="1201" alt="截屏2022-10-24 下午9 01 59" src="https://user-images.githubusercontent.com/25930661/197531762-00412a13-e30a-41bb-82cc-e11f532b59d8.png">
+
+<img width="1340" alt="截屏2022-10-25 上午10 25 33" src="https://user-images.githubusercontent.com/25930661/197667512-b3183a3b-0afa-4bd5-b2f8-f28ce2687aa9.png">
 
 The most innovative parts are pc_dep generation and frustum association, we'll illustrate the main ideas.
 
