@@ -4,10 +4,30 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
 
 
 
+## Installation
 
+  For regular python package installation, type in `pip install -r requirements.txt`
+
+  
+  It is not possible for CenterFusion to run without the support of DCNv2 plugin(A Deformable convolutional network algorighm), you should install it with `python` and compile it as TensorRT plugin. 
+
+  - For python package installation, see [here](https://github.com/Abraham423/DCNv2)
+  
+  - For compiling the DCNv2-TensorRT plugin, see [here](https://github.com/Abraham423/TensorRT-Plugins)
+  
+  You should then be able to build our source code by 
+  
+  ```
+  cd PATH/TO/THIS/PROJECT
+  mkdir build && cd build
+  cmake .. -DTRT_LIB_PATH=${TRT_LIB_PATH}
+  make 
+  ```
+
+  where `${TRT_LIB_PATH}` refers to the library path where you built your DCN-TRT plugin, only in this way can your TRT onnx parser recognize the dcn node in ONNX graph.  
 
 ## Generating samples
-  Please download and preprocess nuscenes dataset according to [this](https://github.com/mrnabati/CenterFusion#dataset-preparation)
+  Please download and preprocess nuscenes dataset according to [this](https://github.com/mrnabati/CenterFusion#dataset-preparation),
   assuming your directory structure is like this :
   
   ```
@@ -50,27 +70,6 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
     - pc_3ds, contains 1000 frame radar points, each has its shape  (5,1000), each row stands for [loc_x, loc_y, loc_z, velo_x, velo_y]
     - data_num.bin, wich shape (1000,), records valid point nums for each radar frame 
   These datas wille be used to feed the trt engines. 
-## Installation
-
-  For regular python package installation, type in `pip install -r requirements.txt`
-
-  
-  It is not possible for CenterFusion to run without the support of DCNv2 plugin(A Deformable convolutional network algorighm), you should install it with `python` and compile it as TensorRT plugin. 
-
-  - For python package installation, see [here](https://github.com/Abraham423/DCNv2)
-  
-  - For compiling the DCNv2-TensorRT plugin, see [here](https://github.com/Abraham423/TensorRT-Plugins)
-  
-  You should then be able to build our source code by 
-  
-  ```
-  cd PATH/TO/THIS/PROJECT
-  mkdir build && cd build
-  cmake .. -DTRT_LIB_PATH=${TRT_LIB_PATH}
-  make 
-  ```
-
-  where `${TRT_LIB_PATH}` refers to the library path where you built your DCN-TRT plugin, only in this way can your TRT onnx parser recognize the dcn node in ONNX graph.  
 
 
   
@@ -78,6 +77,7 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
   After the installation and input data generation, you can simply go to `${CF_ROOT}`, type in `sh run.sh` to run the project.
   Note that for the first time you run the project, it will take some time to generate trt engine from onnx files.   
   Then you should have the generated results in directory `${CF_ROOT}/results`
+  
 ## Visualization the results with ros
   To show the results like the video do, you should previously install ros package according you ubuntu version. 
   Then you should compile with you python package 
@@ -127,10 +127,11 @@ https://user-images.githubusercontent.com/25930661/195581012-5cb6a223-7294-4fa6-
 
 
 ## Computation speed
-||Preprocess|CameraInfer|FrustumAssoc|FeatMerge|FusInfer|PostProcess|
-|---|---|---|---|---|---|---|
-|engine_fp16|0.09|7.44|7.64|0.05|1.00|0.62|
-|engine_fp32|0.16|12.03|8.81|0.04|3.05|0.75|
+The computation latency(by millisecond) is computed for each module, you can see the below table 
+||Preprocess|CameraInfer|FrustumAssoc|FeatMerge|FusInfer|PostProcess|Total|
+|---|---|---|---|---|---|---|---|
+|engine_fp16|0.09|7.44|7.64|0.05|1.00|0.62|16.84|
+|engine_fp32|0.16|12.03|8.81|0.04|3.05|0.75|24.84|
 
 ## Computation Graph
  The main modules of procession can be seen here 
